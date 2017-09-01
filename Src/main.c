@@ -14,9 +14,6 @@ void main(void) {
 
     init();
 
-    I2C_init(ADR);//アドレス
-    PWMInit();
-
     mode=0;
 
     __delay_ms(100);
@@ -38,6 +35,8 @@ void main(void) {
 }
 
 void init(void){
+  uint8_t addr = 0x10;
+
   // Set oscilation
   OSCCON = 0xF0; //PLL　Enable
 
@@ -47,6 +46,16 @@ void init(void){
 
   // Set watch dog
   WDTCON = 0x13;
+ 
+  addr +=
+    (PORTAbits.RA0 << 3) +
+    (PORTAbits.RA1 << 2) +
+    (PORTAbits.RA2 << 1) +
+    (PORTAbits.RA5 << 0);
+
+
+  I2C_init(ADR);//アドレス
+  PWMInit();
 }
 
 void interrupt  HAND(void){
