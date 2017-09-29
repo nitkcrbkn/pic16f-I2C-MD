@@ -2,8 +2,6 @@
 #include <xc.h>
 #include <stdbool.h>
 
-#define ADR 0x10  //アドレス
-
 void init(void);
 void SendToMotor(uint16_t speed,uint8_t stat);
 
@@ -15,8 +13,6 @@ void main(void) {
     init();
 
     mode=0;
-
-    __delay_ms(100);
 
     while(true){
 
@@ -43,18 +39,16 @@ void init(void){
   // Set pin mode
   ANSELA = 0x00;
   ANSELB = 0x00;
-
+  
   // Set watch dog
   WDTCON = 0x13;
- 
-  addr +=
-    (PORTAbits.RA0 << 3) +
-    (PORTAbits.RA1 << 2) +
-    (PORTAbits.RA2 << 1) +
-    (PORTAbits.RA5 << 0);
 
+  addr |= (PORTAbits.RA0 << 0);
+  addr |= (PORTAbits.RA1 << 1);
+  addr |= (PORTAbits.RA2 << 2);
+  addr |= (PORTAbits.RA5 << 3);
 
-  I2C_init(ADR);//アドレス
+  I2C_init(addr);//アドレス
   PWMInit();
 }
 
