@@ -21,8 +21,8 @@ int8_t success;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //I2Cの初期化を行う関数
 //�E����@		�E�L�q
-//	Master	void I2C_init(unsigned char speed);�@�@spped = �}�X�^�[���̃N���b�N���g���ݒ�(default 0x4f)(Fosc = 32MHz)
-//	Slave		void I2C_init(unsigned char add);	add = �g�p����f�o�C�X�̃A�h���X��ݒ�i1Byte�j
+//	Master	void I2C_init(unsigned char speed); spped = 通信速度(default 0x4f)(Fosc = 32MHz)
+//	Slave   void I2C_init(unsigned char add);   add = スレーブ側のアドレス, サイズは1Byte
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifdef  Master
 
